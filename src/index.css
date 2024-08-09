@@ -15,6 +15,7 @@
 .nav-items ul{
   display: flex;
   font-size: 24px;
+  gap: 10px;
   list-style-type: none;
 
 }

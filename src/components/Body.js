@@ -1,7 +1,8 @@
 import RestaurantCard from "./RestaurantCard";
-import resList from "../utils/mockData";
+// import resList from "../utils/mockData";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
 
 const Body = () => {
   const [List, setList] = useState([]);
@@ -31,7 +32,7 @@ const Body = () => {
     );
   };
 
-  if (List.length === 0 || filterData.length === 0) {
+  if (List.length === 0) {
     return <Shimmer />;
   }
   // whenever state variable update, react trigger a reconciliation cycle(re-render the components)
@@ -66,7 +67,7 @@ const Body = () => {
         <button
           className="filter-btn"
           onClick={() => {
-            setList(List.filter((response) => response.rating > 4));
+            setFilter(List.filter((response) => response.info.avgRating > 4));
           }}
         >
           Top rated
@@ -74,7 +75,9 @@ const Body = () => {
       </div>
       <div className="res-container">
         {filterData.map((res) => (
-          <RestaurantCard key={res.info.id} resData={res} />
+          <Link to={"/restaurants/" + res.info.id} key={res.info.id}>
+            <RestaurantCard resData={res} />
+          </Link>
         ))}
       </div>
     </div>
