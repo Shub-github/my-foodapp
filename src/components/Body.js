@@ -41,17 +41,18 @@ const Body = () => {
   // onChange() function change my search text with new value with "event":- using "event.target.value".
   return (
     <div className="body">
-      <div className="filter">
-        <div className="search">
+      <div className="flex">
+        <div className="p-4 m-4">
           <input
             type="text"
-            className="search"
+            className="border border-s-black-400 rounded-md"
             value={searchText}
             onChange={(e) => {
               setSearchText(e.target.value);
             }}
           />
           <button
+            className="px-2 mx-2 bg-green-100 rounded-md"
             onClick={() => {
               const listOfRes = List.filter((res) =>
                 // console.log(res.info.name)
@@ -62,18 +63,17 @@ const Body = () => {
           >
             Search
           </button>
+          <button
+            className="px-2 mx-2 bg-blue-100 rounded-md"
+            onClick={() => {
+              setFilter(List.filter((response) => response.info.avgRating > 4));
+            }}
+          >
+            Top Restaurant
+          </button>
         </div>
-
-        <button
-          className="filter-btn"
-          onClick={() => {
-            setFilter(List.filter((response) => response.info.avgRating > 4));
-          }}
-        >
-          Top rated
-        </button>
       </div>
-      <div className="res-container">
+      <div className="flex flex-wrap">
         {filterData.map((res) => (
           <Link to={"/restaurants/" + res.info.id} key={res.info.id}>
             <RestaurantCard resData={res} />
