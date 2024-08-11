@@ -19,7 +19,10 @@ const Header = () => {
 
       <div className="flex items-center">
         <ul className="flex p-4 m-4 ">
-          <li className="px-4">{onlineStatus == true ? "🟢" : "🔴"}</li>
+          <li className="px-4 bg-gray-400 rounded-md">
+            {" "}
+            Active: {onlineStatus == true ? "🟢" : "🔴"}
+          </li>
           <Link className="px-4 hover:bg-gray-100 rounded-md" to="/">
             Home
           </Link>
