@@ -10,7 +10,7 @@
 // <Suspense fallback={<h1>Loading.....</h1>}> <About /> </Suspense>
 // we can use shimmer or jsx instead of Loading...
 // fallback we use to show some jsx or shimmer.
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Header from "./components/Header";
 import Body from "./components/Body";
 import ReactDOM from "react-dom/client";
@@ -21,16 +21,28 @@ import Contact from "./components/Contact";
 import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
 import { lazy, Suspense } from "react";
+import UserContext from "./utils/UserContext";
 
 //lazy loading import:
 const About = lazy(() => import("./components/About"));
 
 const AppLayout = () => {
+  //fake data for context api i.e. authentication
+  const [userName, setUserName] = useState();
+  useEffect(() => {
+    // Dumy we call an API for user authentication after that we got the data,we send the state and setState as value in context.provider the context which we created i.e UserContext
+    const data = {
+      name: "Shubham",
+    };
+    setUserName(data.name);
+  }, []);
   return (
-    <div className="App">
-      <Header />
-      <Outlet />
-    </div>
+    <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
+      <div className="App">
+        <Header />
+        <Outlet />
+      </div>
+    </UserContext.Provider>
   );
 };
 

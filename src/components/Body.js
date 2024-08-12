@@ -3,12 +3,15 @@ import RestaurantCard from "./RestaurantCard";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import UserContext from "../utils/UserContext";
+import { useContext } from "react";
 
 const Body = () => {
   const [List, setList] = useState([]);
   const [filterData, setFilter] = useState([]); //This is only for filter restro
   const [searchText, setSearchText] = useState(""); //THis is for search
-
+  const { loggedInUser, setUserName } = useContext(UserContext);
+  // console.log("userlogIn===>", loggedInUser);
   useEffect(() => {
     fetchData();
   }, []);
@@ -71,6 +74,14 @@ const Body = () => {
           >
             Top Restaurant
           </button>
+          <input
+            type="text"
+            className="border border-s-black-400 rounded-md"
+            value={loggedInUser}
+            onChange={(e) => {
+              setUserName(e.target.value);
+            }}
+          />
         </div>
       </div>
       <div className="flex flex-wrap">
