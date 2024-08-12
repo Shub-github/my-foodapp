@@ -9,6 +9,7 @@ const RestaurantMenu = () => {
   const { resId } = useParams();
   // console.log("params=====>", MENU_URL + resId, resId);
   const resInfo = useRestaurantMenu(resId);
+  const [showIndex, setShowIndex] = useState(null);
 
   if (resInfo == null) return <Shimmer />;
 
@@ -39,6 +40,10 @@ const RestaurantMenu = () => {
         <RestaurantCategory
           key={category?.card?.card?.title}
           data={category?.card?.card}
+          showItem={showIndex === index ? true : false}
+          setShowIndex={() => {
+            setShowIndex(index);
+          }}
         />
       ))}
       {/* <h2>Menu</h2>
