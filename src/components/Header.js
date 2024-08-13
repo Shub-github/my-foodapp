@@ -3,12 +3,15 @@ import { LOGO_URL } from "../utils/constant";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import UserContext from "../utils/UserContext";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const [btnNameReact, setBtnNameReact] = useState("Login");
   const onlineStatus = useOnlineStatus();
   const { loggedInUser } = useContext(UserContext);
-  console.log("onlineStatus==>", loggedInUser);
+  const cartItems = useSelector((store) => store.cart.items); //This will subscribe to the small part of the store to fetch the update state of the slice using useSelector;
+
+  // console.log("onlineStatus==>", loggedInUser);
   return (
     <div className="flex justify-between bg-slate-200 shadow-lg">
       <div className="logo-container">
@@ -34,8 +37,8 @@ const Header = () => {
           <Link className="px-4 hover:bg-gray-100 rounded-md" to="/contact">
             Contact Us
           </Link>
-          <Link className="px-4 hover:bg-gray-100 rounded-md" to="/">
-            Cart
+          <Link className="px-4 hover:bg-gray-100 rounded-md" to="/cart">
+            Cart : {cartItems.length}
           </Link>
           <button
             className="px-2 bg-gray-300 rounded-md"
