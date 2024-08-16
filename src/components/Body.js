@@ -11,7 +11,7 @@ const Body = () => {
   const [filterData, setFilter] = useState([]); //This is only for filter restro
   const [searchText, setSearchText] = useState(""); //THis is for search
   const { loggedInUser, setUserName } = useContext(UserContext);
-  // console.log("userlogIn===>", loggedInUser);
+  console.log("CardData===>", filterData);
   useEffect(() => {
     fetchData();
   }, []);
@@ -78,6 +78,7 @@ const Body = () => {
             type="text"
             className="border border-s-black-400 rounded-md"
             value={loggedInUser}
+            data-testid="searchInput"
             onChange={(e) => {
               setUserName(e.target.value);
             }}
