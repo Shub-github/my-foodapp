@@ -27,19 +27,19 @@ const ItemList = ({ items }) => {
             <p className="text-xs">{item.card.info.description}</p>
           </div>
 
-          <div className="w-3/12 p-4">
-            <div className="absolute">
+          <div className="w-3/12 p-4 relative">
+            <div className="absolute left-1/2 transform -translate-x-1/2 flex">
               <button
                 onClick={() => AddItem(item)}
-                className="p-2 mx-16 rounded-lg bg-black text-white"
+                className="p-2 mx-16 border border-white rounded-lg bg-black text-white hover:bg-slate-200 hover:text-black"
               >
-                Add+
+                +
               </button>
               <button
                 onClick={() => dispatch(removeItem())}
-                className="p-2 mx-16 rounded-lg bg-black text-white"
+                className="p-2 mx-16 border border-white rounded-lg bg-black text-white hover:bg-slate-200 hover:text-black"
               >
-                Remove -
+                -
               </button>
             </div>
             <img className="w-full rounded-md" alt="burger" src={CDN_URL}></img>
